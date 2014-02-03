@@ -1,6 +1,3 @@
-Z:\src\great-data-expectations\great-data-expectations\bin\Debug\great-data-expectations.exe.config
-Z:\src\great-data-expectations\great-data-expectations\bin\Debug\great-data-expectations.exe
-Z:\src\great-data-expectations\great-data-expectations\bin\Debug\great-data-expectations.pdb
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\Microsoft.Data.Edm.dll
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\Microsoft.Data.OData.dll
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\Microsoft.Data.Services.Client.dll
@@ -51,5 +48,8 @@ Z:\src\great-data-expectations\great-data-expectations\bin\Debug\ru\System.Spati
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\zh-Hans\System.Spatial.resources.dll
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\zh-Hant\System.Spatial.resources.dll
 Z:\src\great-data-expectations\great-data-expectations\obj\Debug\great-data-expectations.csprojResolveAssemblyReference.cache
-Z:\src\great-data-expectations\great-data-expectations\obj\Debug\great-data-expectations.exe
-Z:\src\great-data-expectations\great-data-expectations\obj\Debug\great-data-expectations.pdb
+Z:\src\great-data-expectations\great-data-expectations\bin\Debug\GreatExpectations.exe.config
+Z:\src\great-data-expectations\great-data-expectations\bin\Debug\GreatExpectations.exe
+Z:\src\great-data-expectations\great-data-expectations\bin\Debug\GreatExpectations.pdb
+Z:\src\great-data-expectations\great-data-expectations\obj\Debug\GreatExpectations.exe
+Z:\src\great-data-expectations\great-data-expectations\obj\Debug\GreatExpectations.pdb

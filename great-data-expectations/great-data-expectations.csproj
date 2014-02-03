@@ -7,8 +7,8 @@
     <ProjectGuid>{0D15651B-7D1F-4099-A54F-C9FEE4AEA59D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>great_data_expectations</RootNamespace>
-    <AssemblyName>great-data-expectations</AssemblyName>
+    <RootNamespace>GreatExpectations</RootNamespace>
+    <AssemblyName>GreatExpectations</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -68,8 +68,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\IAmAnExpectation.cs" />
+    <Compile Include="Generation\ExpectationGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Temporal\HourlyExpectation.cs" />
+    <Compile Include="Tenancy\ExpectationDescription.cs" />
+    <Compile Include="Tenancy\ITenantConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
