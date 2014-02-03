@@ -8,7 +8,7 @@ namespace GreatExpectations.Generation
 {
     public class ExpectationGenerator
     {
-        public IEnumerable<IAmAnExpectation> GeneratExpectations(DateTime startDateTime, DateTime endDateTime)
+        public IEnumerable<IAmAnExpectation> GenerateExpectations(DateTime startDateTime, DateTime endDateTime)
         {
             List<IAmAnExpectation> expectations = new List<IAmAnExpectation>();
 

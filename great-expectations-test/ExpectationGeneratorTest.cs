@@ -7,6 +7,8 @@ using GreatExpectations;
 using GreatExpectations.Generation;
 using Xunit;
 
+using Assert = Xunit.Assert;
+
 namespace great_expectations_test
 {
     public class ExpectationGeneratorTest
@@ -17,7 +19,7 @@ namespace great_expectations_test
             public void Returns24ExpecationsADay()
             {
                 var generator = new ExpectationGenerator();
-                var expectations = generator.GeneratExpectations(DateTime.Now.AddDays(-1D).AddSeconds(1D), DateTime.Now);
+                var expectations = generator.GenerateExpectations(DateTime.Now.AddDays(-1D).AddSeconds(1D), DateTime.Now);
 
                 Assert.Equal(24, expectations.Count());
             }
