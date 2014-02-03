@@ -18,7 +18,7 @@ namespace GreatExpectations.Generation
                 expectations.Add(new HourlyExpectation(new ExpectationDescription()
                         {
                             Frequency = ExpectationFrequency.Hourly, MinFileExpectation = 1, MaxFileExpectation = 1,
-                            Prefix = "iislogs/dataset=cdsagenttest/webserver=web01"
+                            Prefix = "iislogs/dataset=cdsagenttest/webserver=web01", DataIngressTimespan = TimeSpan.FromMinutes(60.1D)
                         }, 
                         current));
                 current = current.AddHours(1D);

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using GreatExpectations.Core;
 using GreatExpectations.Tenancy;
 
@@ -20,7 +19,14 @@ namespace GreatExpectations.Temporal
             var prefix = _expectationDescription.Prefix;
             var variablePortion = string.Format("year={0}/month={1}/day={2}/hour={3}", _epoch.Year.ToString("##").Substring(2), _epoch.Month.ToString("00"), _epoch.Day.ToString("00"), _epoch.Hour.ToString("00"));
 
-            return Path.Combine(prefix, variablePortion);
+            return string.Join("/", prefix, variablePortion);
         }
+
+        public bool IsInDataIngressWindow()
+        {
+            return _epoch > (DateTime.Now - _expectationDescription.DataIngressTimespan);
+        }
+
+        public ExpectationDescription Description {get { return _expectationDescription; }}
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace GreatExpectations.Tenancy
+﻿using System;
+
+namespace GreatExpectations.Tenancy
 {
     public class ExpectationDescription
     {
@@ -6,6 +8,7 @@
         public string Prefix { get; set; }
         public int MinFileExpectation { get; set; }
         public int MaxFileExpectation { get; set; }
+        public TimeSpan DataIngressTimespan { get; set; }
     }
 
     public enum ExpectationFrequency
