@@ -7,12 +7,9 @@ using Microsoft.WindowsAzure.Storage;
 namespace GreatExpectations
 {
     public static class Assert{
-        internal static IEnumerable<Assertion> Expectations(IEnumerable<IAmAnExpectation> expectations)
+        internal static IEnumerable<Assertion> Expectations(IEnumerable<IAmAnExpectation> expectations, CloudStorageAccount storageAccount, string containerName)
         {
-            var storageAccount =
-                CloudStorageAccount.Parse(
-                    "DefaultEndpointsProtocol=https;AccountName=elastacloudne;AccountKey=x8hhFGPKXs7Dht8Aq8tBTE0dCVpZ9tMC7UGTJ2Bws9pnmtyNi5DatRlRhYW6n12PN8mVkDuckvzitVkxW0sVZw==");
-            var container = storageAccount.CreateCloudBlobClient().GetContainerReference("cdsagenttest");
+            var container = storageAccount.CreateCloudBlobClient().GetContainerReference(containerName);
 
             var assertions = new List<Assertion>();
 
@@ -27,7 +24,7 @@ namespace GreatExpectations
                     if (anExpectation.IsInDataIngressWindow())
                     {
                         var message = string.Format("The expectation passed with a warning; the target virtual path {0} does not yet exist but is within its data ingress window. There is {1} remaining. ", 
-                            expectedVirtualPath, (DateTime.Now + anExpectation.Description.DataIngressTimespan) - DateTime.Now);
+                            expectedVirtualPath, (anExpectation.Epoch + anExpectation.Description.DataIngressTimespan) - DateTime.Now);
 
                         assertions.Add(new Assertion(anExpectation, AssertionResult.Warning, message));
                     }

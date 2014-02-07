@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Assert.cs" />
     <Compile Include="Core\IAmAnExpectation.cs" />
+    <Compile Include="Generation\EpochFinder.cs" />
     <Compile Include="Generation\ExpectationGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

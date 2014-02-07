@@ -1,4 +1,5 @@
-﻿using GreatExpectations.Tenancy;
+﻿using System;
+using GreatExpectations.Tenancy;
 
 namespace GreatExpectations.Core
 {
@@ -6,6 +7,7 @@ namespace GreatExpectations.Core
     {
         string GetRelativeAddress();
         bool IsInDataIngressWindow();
+        DateTime Epoch { get; }
         ExpectationDescription Description { get; }
     }
 }

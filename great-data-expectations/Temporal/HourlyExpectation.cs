@@ -28,5 +28,6 @@ namespace GreatExpectations.Temporal
         }
 
         public ExpectationDescription Description {get { return _expectationDescription; }}
+        public DateTime Epoch {get { return _epoch; }}
     }
 }
