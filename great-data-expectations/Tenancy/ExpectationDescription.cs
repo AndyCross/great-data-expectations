@@ -9,6 +9,7 @@ namespace GreatExpectations.Tenancy
         public int MinFileExpectation { get; set; }
         public int MaxFileExpectation { get; set; }
         public TimeSpan DataIngressTimespan { get; set; }
+        public string CustomVariableFormat { get; set; }
     }
 
     public enum ExpectationFrequency

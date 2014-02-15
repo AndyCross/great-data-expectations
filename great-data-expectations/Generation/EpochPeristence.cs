@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,7 @@ namespace GreatExpectations.Generation
             containerReference.FetchAttributes();
             DateTime epoch = assertion.Raw.Epoch;
 
-            containerReference.Metadata["misshaversham"] = epoch.ToString();
+            containerReference.Metadata["misshaversham"] = epoch.ToString(CultureInfo.InvariantCulture);
             containerReference.SetMetadata();
         }
     }
