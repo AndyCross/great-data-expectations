@@ -19,7 +19,7 @@ namespace great_expectations_test
             public void Returns24ExpecationsADay()
             {
                 var generator = new ExpectationGenerator();
-                var expectations = generator.GenerateExpectations(DateTime.Now.AddDays(-1D).AddSeconds(1D), DateTime.Now, "iislogs/dataset=cdsagenttest/webserver=web01", 1, 1, TODO);
+                var expectations = generator.GenerateExpectations(DateTime.Now.AddDays(-1D).AddSeconds(1D), DateTime.Now, "iislogs/dataset=cdsagenttest/webserver=web01", 1, 1, "");
 
                 Assert.Equal(24, expectations.Count());
             }
