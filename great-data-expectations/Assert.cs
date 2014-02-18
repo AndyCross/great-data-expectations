@@ -10,7 +10,10 @@ namespace GreatExpectations
         internal static IEnumerable<Assertion> Expectations(IEnumerable<IAmAnExpectation> expectations, CloudStorageAccount storageAccount, string containerName)
         {
             var container = storageAccount.CreateCloudBlobClient().GetContainerReference(containerName);
-
+            if (!container.Exists())
+            {
+                throw new AssertionPreconditionFailedException(string.Format("The container {0} was not found", containerName));
+            }
             var assertions = new List<Assertion>();
 
             foreach (var anExpectation in expectations)
@@ -48,32 +51,10 @@ namespace GreatExpectations
         }
     }
 
-    public class Assertion
+    public class AssertionPreconditionFailedException : Exception
     {
-        private IAmAnExpectation _raw;
-        private readonly AssertionResult _result;
-        private readonly string _message;
-
-        public Assertion(IAmAnExpectation raw, AssertionResult result, string message)
+        public AssertionPreconditionFailedException(string message) : base(message)
         {
-            _raw = raw;
-            _result = result;
-            _message = message;
-        }
-
-        public IAmAnExpectation Raw
-        {
-            get { return _raw; }
-        }
-
-        public AssertionResult Result
-        {
-            get { return _result; }
-        }
-
-        public string Message
-        {
-            get { return _message; }
         }
     }
 

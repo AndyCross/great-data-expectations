@@ -47,7 +47,6 @@ Z:\src\great-data-expectations\great-data-expectations\bin\Debug\ko\System.Spati
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\ru\System.Spatial.resources.dll
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\zh-Hans\System.Spatial.resources.dll
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\zh-Hant\System.Spatial.resources.dll
-Z:\src\great-data-expectations\great-data-expectations\obj\Debug\great-data-expectations.csprojResolveAssemblyReference.cache
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\GreatExpectations.pdb
 Z:\src\great-data-expectations\great-data-expectations\obj\Debug\GreatExpectations.pdb
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\GreatExpectations.dll.config

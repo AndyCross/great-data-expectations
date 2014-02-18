@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GreatExpectations.Core;
 using GreatExpectations.Generation;
 using Microsoft.WindowsAzure.Storage;
 

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GreatExpectations.Core;
 using Microsoft.WindowsAzure.Storage;
 
 namespace GreatExpectations.Generation
