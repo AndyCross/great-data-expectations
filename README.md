@@ -15,15 +15,15 @@ PM> Install-Package GreatExpectations -Pre
 Once installed, use the ExpectationGenerator and the Assert class to build and run your data expectations:
 
 ```csharp
-            // Create an instance of the ExpectationGenerator; note that this is instance to allow for variant implementations
-            var expectationGenerator = new ExpectationGenerator();
-            var expectations = expectationGenerator.GenerateExpectations(lastExecutionEpoch, endDateTime, dataSetPrefix, minFileExpectation, maxFileExpectation, customVariableFormat);
+// Create an instance of the ExpectationGenerator; note that this is instance to allow for variant implementations
+var expectationGenerator = new ExpectationGenerator();
+var expectations = expectationGenerator.GenerateExpectations(lastExecutionEpoch, endDateTime, dataSetPrefix, minFileExpectation, maxFileExpectation, customVariableFormat);
 
-            // This is a blocking call that iterates over the IAmAnExpection[] and returns Assertions (Results alongside Expectations)
-            var assertions = GreatExpectations.Assert.Expectations(expectations, storageAccount, containerName).ToArray();
-            foreach (var assertion in assertions)
-            {
-                Console.WriteLine("{0}: {1}", assertion.Result, assertion.Message);
-            }
+// This is a blocking call that iterates over the IAmAnExpection[] and returns Assertions (Results alongside Expectations)
+var assertions = GreatExpectations.Assert.Expectations(expectations, storageAccount, containerName).ToArray();
+foreach (var assertion in assertions)
+{
+    Console.WriteLine("{0}: {1}", assertion.Result, assertion.Message);
+}
 ```
 
