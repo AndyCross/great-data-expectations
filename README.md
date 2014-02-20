@@ -27,3 +27,4 @@ foreach (var assertion in assertions)
 }
 ```
 
+Alternatively, use the [MissHaversham](http://en.wikipedia.org/wiki/Miss_Havisham) class (*she's static and vengeful*).  
