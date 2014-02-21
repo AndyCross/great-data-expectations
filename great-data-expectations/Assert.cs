@@ -34,7 +34,7 @@ namespace GreatExpectations
                     else
                     {
                         var message = string.Format(
-                            "The expectation failed to be met: Expected {0} min and {1} max, Actual: {2}. Target virtual path: {3}",
+                            "The expectation failed to be met: Expected between {0} and {1}, Actual: {2}. Target virtual path: {3}",
                             anExpectation.Description.MinFileExpectation, anExpectation.Description.MaxFileExpectation,
                             target.Count(), expectedVirtualPath);
 
@@ -43,7 +43,12 @@ namespace GreatExpectations
                 }
                 else
                 {
-                    assertions.Add(new Assertion(anExpectation, AssertionResult.Success, string.Empty));
+                    var message = string.Format(
+                        "The expectation was met: Expected between {0} and {1}, Actual: {2}. Target virtual path: {3}",
+                        anExpectation.Description.MinFileExpectation, anExpectation.Description.MaxFileExpectation,
+                        target.Count(), expectedVirtualPath);
+
+                    assertions.Add(new Assertion(anExpectation, AssertionResult.Success, message));
                 }
             }
 

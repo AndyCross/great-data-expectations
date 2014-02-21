@@ -18,7 +18,7 @@ namespace GreatExpectations.Generation
             containerReference.FetchAttributes();
             DateTime epoch;
 
-            if (DateTime.TryParseExact(containerReference.Metadata["misshaversham"], "g", CultureInfo.InvariantCulture.DateTimeFormat, DateTimeStyles.None, out epoch))
+            if (DateTime.TryParseExact(containerReference.Metadata["misshaversham"], "g", DateTimeFormatInfo.InvariantInfo, DateTimeStyles.None, out epoch))
             {
                 return epoch;
             }
@@ -38,7 +38,7 @@ namespace GreatExpectations.Generation
             containerReference.FetchAttributes();
             DateTime epoch = assertion.Raw.Epoch;
 
-            containerReference.Metadata["misshaversham"] = epoch.ToString("g", CultureInfo.InvariantCulture);
+            containerReference.Metadata["misshaversham"] = epoch.ToString("g", DateTimeFormatInfo.InvariantInfo);
             containerReference.SetMetadata();
         }
     }
