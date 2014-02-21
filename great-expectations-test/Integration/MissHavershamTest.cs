@@ -29,6 +29,21 @@ namespace great_expectations_test.Integration
                 Xunit.Assert.NotEmpty(assertions);
             }
 
+            [Fact]
+            public void SensibleForEpochPersistence()
+            {
+                var storageAccount = CloudStorageAccount.Parse(Environment.GetEnvironmentVariable("greatexpectationsconnectionstring"));
+
+                var storage = storageAccount.CreateCloudBlobClient().ListContainers().ToArray();
+
+                var assertions =
+                    MissHaversham.Assert(
+                        storageAccount, "cdsagenttest", "iislogs/dataset=cdsagenttest/webserver=web01", 1, 1,
+                        string.Empty);
+
+                Xunit.Assert.NotEmpty(assertions);
+            }
+
         }
     }
 }

@@ -52,3 +52,4 @@ Z:\src\great-data-expectations\great-data-expectations\obj\Debug\GreatExpectatio
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\GreatExpectations.dll.config
 Z:\src\great-data-expectations\great-data-expectations\bin\Debug\GreatExpectations.dll
 Z:\src\great-data-expectations\great-data-expectations\obj\Debug\GreatExpectations.dll
+Z:\src\great-data-expectations\great-data-expectations\obj\Debug\great-data-expectations.csprojResolveAssemblyReference.cache

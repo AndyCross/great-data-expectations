@@ -50,19 +50,4 @@ namespace GreatExpectations
             return assertions;
         }
     }
-
-    public class AssertionPreconditionFailedException : Exception
-    {
-        public AssertionPreconditionFailedException(string message) : base(message)
-        {
-        }
-    }
-
-    public enum AssertionResult
-    {
-        Success,
-        Failure,
-        Inconclusive,
-        Warning
-    }
 }

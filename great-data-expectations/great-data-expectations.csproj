@@ -73,6 +73,8 @@
   <ItemGroup>
     <Compile Include="Assert.cs" />
     <Compile Include="Assertion.cs" />
+    <Compile Include="AssertionPreconditionFailedException.cs" />
+    <Compile Include="AssertionResult.cs" />
     <Compile Include="Core\IAmAnExpectation.cs" />
     <Compile Include="Generation\EpochPeristence.cs" />
     <Compile Include="Generation\ExpectationGenerator.cs" />
