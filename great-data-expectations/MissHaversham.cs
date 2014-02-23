@@ -16,12 +16,13 @@ namespace GreatExpectations
             // note that this is optional in the workflow and instead arbitrary datetimes can be passed to expectationGenerator.GenerateExpectations
             DateTime lastExecutionEpoch, endDateTime;
             lastExecutionEpoch = forceStartDateTime.HasValue ? forceStartDateTime.Value : EpochPeristence.GetLastSatisfied(storageAccount, containerName);
+            var nextExecutionEpoch = lastExecutionEpoch.AddHours(1D);
             endDateTime = forceEndDateTime.HasValue ? forceEndDateTime.Value : DateTime.Now;
 
             // Create an instance of the ExpectationGenerator; note that this is instance to allow for variant implementations
             // Not yet implemented, but planned for predicatable but not date-oriented generators and different temporal durations
             var expectationGenerator = new ExpectationGenerator();
-            var expectations = expectationGenerator.GenerateExpectations(lastExecutionEpoch, endDateTime, dataSetPrefix, minFileExpectation, maxFileExpectation, customVariableFormat);
+            var expectations = expectationGenerator.GenerateExpectations(nextExecutionEpoch, endDateTime, dataSetPrefix, minFileExpectation, maxFileExpectation, customVariableFormat);
 
             // This is a blocking call that iterates over the IAmAnExpection[] and returns Assertions (Results alongside Expectations)
             var assertions = GreatExpectations.Assert.Expectations(expectations, storageAccount, containerName).ToArray();
