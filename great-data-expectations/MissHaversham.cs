@@ -10,16 +10,20 @@ namespace GreatExpectations
 {
     public class MissHaversham
     {
-        private readonly EpochPeristence _epochPeristence;
+        private readonly IEpochPeristence _epochPeristence;
+        private IExpectationGenerator _expectationGenerator;
+        private readonly IAssert _assert;
 
-        public MissHaversham() : this (new EpochPeristence())
+        public MissHaversham() : this (new EpochPeristence(), new ExpectationGenerator(), new Assert())
         {
             
         }
 
-        private MissHaversham(EpochPeristence epochPeristence)
+        private MissHaversham(EpochPeristence epochPeristence, ExpectationGenerator expectationGenerator, Assert assert)
         {
             _epochPeristence = epochPeristence;
+            _expectationGenerator = expectationGenerator;
+            _assert = assert;
         }
 
         internal Assertion[] AssertImpl(CloudStorageAccount storageAccount, string containerName, string dataSetPrefix, int minFileExpectation = 1, int maxFileExpectation = 1, string customVariableFormat = "", DateTime? forceStartDateTime = null, DateTime? forceEndDateTime = null)
@@ -31,13 +35,11 @@ namespace GreatExpectations
             var nextExecutionEpoch = lastExecutionEpoch.AddHours(1D);
             endDateTime = forceEndDateTime.HasValue ? forceEndDateTime.Value : DateTime.Now;
 
-            // Create an instance of the ExpectationGenerator; note that this is instance to allow for variant implementations
             // Not yet implemented, but planned for predicatable but not date-oriented generators and different temporal durations
-            var expectationGenerator = new ExpectationGenerator();
-            var expectations = expectationGenerator.GenerateExpectations(nextExecutionEpoch, endDateTime, dataSetPrefix, minFileExpectation, maxFileExpectation, customVariableFormat);
+            var expectations = _expectationGenerator.GenerateExpectations(nextExecutionEpoch, endDateTime, dataSetPrefix, minFileExpectation, maxFileExpectation, customVariableFormat);
 
             // This is a blocking call that iterates over the IAmAnExpection[] and returns Assertions (Results alongside Expectations)
-            var assertions = GreatExpectations.Assert.Expectations(expectations, storageAccount, containerName).ToArray();
+            var assertions = _assert.Expectations(expectations, storageAccount, containerName).ToArray();
             foreach (var assertion in assertions)
             {
                 Console.WriteLine("{0}: {1}", assertion.Result, assertion.Message);

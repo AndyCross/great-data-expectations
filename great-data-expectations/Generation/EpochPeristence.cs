@@ -9,10 +9,10 @@ using Microsoft.WindowsAzure.Storage;
 
 namespace GreatExpectations.Generation
 {
-    internal class EpochPeristence
+    internal class EpochPeristence : IEpochPeristence
     {
 
-        public static DateTime GetLastSatisfied(CloudStorageAccount storageAccount, string containerName, DateTime defaultDateTime)
+        public DateTime GetLastSatisfied(CloudStorageAccount storageAccount, string containerName, DateTime defaultDateTime)
         {
             var containerReference = storageAccount.CreateCloudBlobClient().GetContainerReference(containerName);
             containerReference.FetchAttributes();
@@ -26,13 +26,13 @@ namespace GreatExpectations.Generation
             return defaultDateTime;
         }
 
-        public static DateTime GetLastSatisfied(CloudStorageAccount storageAccount, string containerName)
+        public DateTime GetLastSatisfied(CloudStorageAccount storageAccount, string containerName)
         {
             return GetLastSatisfied(storageAccount, containerName,
                 DateTime.Now.AddHours(-24D).AddMinutes(DateTime.Now.Minute*-1D));
         }
 
-        public static void SetLastSatisfied(CloudStorageAccount storageAccount, string containerName, Assertion assertion)
+        public void SetLastSatisfied(CloudStorageAccount storageAccount, string containerName, Assertion assertion)
         {
             var containerReference = storageAccount.CreateCloudBlobClient().GetContainerReference(containerName);
             containerReference.FetchAttributes();

@@ -6,7 +6,7 @@ using GreatExpectations.Tenancy;
 
 namespace GreatExpectations.Generation
 {
-    public class ExpectationGenerator
+    public class ExpectationGenerator : IExpectationGenerator
     {
         public IEnumerable<IAmAnExpectation> GenerateExpectations(DateTime startDateTime, DateTime endDateTime, string dataPathPrefix, int minFileExpectation, int maxFileExpectation, string customVariableFormat = "")
         {

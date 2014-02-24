@@ -6,8 +6,9 @@ using Microsoft.WindowsAzure.Storage;
 
 namespace GreatExpectations
 {
-    public static class Assert{
-        internal static IEnumerable<Assertion> Expectations(IEnumerable<IAmAnExpectation> expectations, CloudStorageAccount storageAccount, string containerName)
+    internal class Assert : IAssert
+    {
+        public IEnumerable<Assertion> Expectations(IEnumerable<IAmAnExpectation> expectations, CloudStorageAccount storageAccount, string containerName)
         {
             var container = storageAccount.CreateCloudBlobClient().GetContainerReference(containerName);
             if (!container.Exists())

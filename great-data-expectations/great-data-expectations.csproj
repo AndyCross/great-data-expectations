@@ -78,6 +78,9 @@
     <Compile Include="Core\IAmAnExpectation.cs" />
     <Compile Include="Generation\EpochPeristence.cs" />
     <Compile Include="Generation\ExpectationGenerator.cs" />
+    <Compile Include="Generation\IEpochPeristence.cs" />
+    <Compile Include="Generation\IExpectationGenerator.cs" />
+    <Compile Include="IAssert.cs" />
     <Compile Include="MissHaversham.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Temporal\HourlyExpectation.cs" />
