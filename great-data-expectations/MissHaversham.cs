@@ -26,7 +26,7 @@ namespace GreatExpectations
             _assert = assert;
         }
 
-        internal Assertion[] AssertImpl(CloudStorageAccount storageAccount, string containerName, string dataSetPrefix, int minFileExpectation = 1, int maxFileExpectation = 1, string customVariableFormat = "", DateTime? forceStartDateTime = null, DateTime? forceEndDateTime = null)
+        internal Assertion[] AssertImpl(ExpectationFrequency frequency, CloudStorageAccount storageAccount, string containerName, string dataSetPrefix, int minFileExpectation = 1, int maxFileExpectation = 1, string customVariableFormat = "", DateTime? forceStartDateTime = null, DateTime? forceEndDateTime = null)
         {
             // The use of EpochPersistence allows repeated and incremental expectation checking. Be sure to call EpochPersistence.SetLastSatisfied
             // note that this is optional in the workflow and instead arbitrary datetimes can be passed to expectationGenerator.GenerateExpectations
@@ -36,7 +36,7 @@ namespace GreatExpectations
             endDateTime = forceEndDateTime.HasValue ? forceEndDateTime.Value : DateTime.Now;
 
             // Not yet implemented, but planned for predicatable but not date-oriented generators and different temporal durations
-            var expectations = _expectationGenerator.GenerateExpectations(nextExecutionEpoch, endDateTime, dataSetPrefix, minFileExpectation, maxFileExpectation, customVariableFormat);
+            var expectations = _expectationGenerator.GenerateExpectations(frequency, nextExecutionEpoch, endDateTime, dataSetPrefix, minFileExpectation, maxFileExpectation, customVariableFormat);
 
             // This is a blocking call that iterates over the IAmAnExpection[] and returns Assertions (Results alongside Expectations)
             var assertions = _assert.Expectations(expectations, storageAccount, containerName).ToArray();
@@ -55,6 +55,7 @@ namespace GreatExpectations
         /// <summary>
         /// Generates a set of Assertions based on the storageAccount and container supplied; using default rulesets.
         /// </summary>
+        /// <param name="frequency">When generating expectations, how frequently should the data be expected</param>
         /// <param name="storageAccount">The account that contains the data to expect</param>
         /// <param name="containerName">The container that contains the data to expect. Note that metadata will be added to this container UNLESS the forcestart/end datetimes are supplied.</param>
         /// <param name="dataSetPrefix">The prefix to the path of execution, i.e. path/to/files/[variable format]</param>
@@ -64,12 +65,12 @@ namespace GreatExpectations
         /// <param name="forceStartDateTime">A datetime to start asserting</param>
         /// <param name="forceEndDateTime">A datetime to cease asserting</param>
         /// <returns></returns>
-        public static Assertion[] Assert(CloudStorageAccount storageAccount, string containerName, string dataSetPrefix,
+        public static Assertion[] Assert(ExpectationFrequency frequency, CloudStorageAccount storageAccount, string containerName, string dataSetPrefix,
             int minFileExpectation = 1, int maxFileExpectation = 1, string customVariableFormat = "",
             DateTime? forceStartDateTime = null, DateTime? forceEndDateTime = null)
         {
             var spinster = new MissHaversham();
-            return spinster.AssertImpl(storageAccount, containerName, dataSetPrefix, minFileExpectation, maxFileExpectation,
+            return spinster.AssertImpl(frequency, storageAccount, containerName, dataSetPrefix, minFileExpectation, maxFileExpectation,
                 customVariableFormat, forceStartDateTime, forceEndDateTime);
         }
     }

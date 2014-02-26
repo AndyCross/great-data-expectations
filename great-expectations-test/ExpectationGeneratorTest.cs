@@ -16,12 +16,20 @@ namespace great_expectations_test
         public class TheGenerateMethod
         {
             [Fact]
-            public void Returns24ExpecationsADay()
+            public void Returns24ExpecationsADayForHourly()
             {
                 var generator = new ExpectationGenerator();
-                var expectations = generator.GenerateExpectations(DateTime.Now.AddDays(-1D).AddSeconds(1D), DateTime.Now, "iislogs/dataset=cdsagenttest/webserver=web01", 1, 1, "");
+                var expectations = generator.GenerateExpectations(ExpectationFrequency.Hourly, DateTime.Now.AddDays(-1D).AddSeconds(1D), DateTime.Now, "iislogs/dataset=cdsagenttest/webserver=web01", 1, 1, customVariableFormat: "");
 
                 Assert.Equal(24, expectations.Count());
+            }
+            [Fact]
+            public void Returns1ExpecationsADayForDaily()
+            {
+                var generator = new ExpectationGenerator();
+                var expectations = generator.GenerateExpectations(ExpectationFrequency.Daily, DateTime.Now.AddDays(-1D).AddSeconds(1D), DateTime.Now, "iislogs/dataset=cdsagenttest/webserver=web01", 1, 1, customVariableFormat: "");
+
+                Assert.Equal(1, expectations.Count());
             }
         }
     }

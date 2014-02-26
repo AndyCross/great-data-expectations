@@ -1,4 +1,5 @@
 ﻿using System;
+using GreatExpectations.Generation;
 
 namespace GreatExpectations.Tenancy
 {
@@ -10,10 +11,5 @@ namespace GreatExpectations.Tenancy
         public int MaxFileExpectation { get; set; }
         public TimeSpan DataIngressTimespan { get; set; }
         public string CustomVariableFormat { get; set; }
-    }
-
-    public enum ExpectationFrequency
-    {
-        Hourly
     }
 }

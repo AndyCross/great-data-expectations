@@ -8,20 +8,16 @@ namespace GreatExpectations.Generation
 {
     public class ExpectationGenerator : IExpectationGenerator
     {
-        public IEnumerable<IAmAnExpectation> GenerateExpectations(DateTime startDateTime, DateTime endDateTime, string dataPathPrefix, int minFileExpectation, int maxFileExpectation, string customVariableFormat = "")
+        public IEnumerable<IAmAnExpectation> GenerateExpectations(ExpectationFrequency frequency, DateTime startDateTime, DateTime endDateTime, string dataPathPrefix, int minFileExpectation, int maxFileExpectation, string customVariableFormat = "")
         {
             List<IAmAnExpectation> expectations = new List<IAmAnExpectation>();
 
             DateTime current = startDateTime;
             while (current <= endDateTime)
             {
-                expectations.Add(new HourlyExpectation(new ExpectationDescription()
-                        {
-                            Frequency = ExpectationFrequency.Hourly, MinFileExpectation = minFileExpectation, MaxFileExpectation = maxFileExpectation,
-                            Prefix = dataPathPrefix, DataIngressTimespan = TimeSpan.FromMinutes(60.1D), CustomVariableFormat = customVariableFormat
-                        }, 
-                        current));
-                current = current.AddHours(1D);
+                var expectation = ExpectationFactory.Build(frequency, dataPathPrefix, minFileExpectation, maxFileExpectation, customVariableFormat, current);
+                expectations.Add(expectation);
+                current = expectation.IncrementEpoch(current);
             }
 
             return expectations;

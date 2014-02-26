@@ -9,5 +9,6 @@ namespace GreatExpectations.Core
         bool IsInDataIngressWindow();
         DateTime Epoch { get; }
         ExpectationDescription Description { get; }
+        DateTime IncrementEpoch(DateTime current);
     }
 }

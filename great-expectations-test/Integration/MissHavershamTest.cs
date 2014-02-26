@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GreatExpectations;
 using GreatExpectations.Core;
+using GreatExpectations.Generation;
 using Microsoft.WindowsAzure.Storage;
 using Xunit;
 
@@ -22,7 +23,7 @@ namespace great_expectations_test.Integration
                 var storage = storageAccount.CreateCloudBlobClient().ListContainers().ToArray();
 
                 var assertions =
-                    MissHaversham.Assert(
+                    MissHaversham.Assert(ExpectationFrequency.Hourly,
                         storageAccount, "cdsagenttest", "iislogs/dataset=cdsagenttest/webserver=web01", 1, 1,
                         string.Empty, DateTime.Now.AddDays(-1D), DateTime.Now);
 
@@ -37,7 +38,7 @@ namespace great_expectations_test.Integration
                 var storage = storageAccount.CreateCloudBlobClient().ListContainers().ToArray();
 
                 var assertions =
-                    MissHaversham.Assert(
+                    MissHaversham.Assert(ExpectationFrequency.Hourly, 
                         storageAccount, "cdsagenttest", "iislogs/dataset=cdsagenttest/webserver=web01", 1, 1,
                         string.Empty);
 

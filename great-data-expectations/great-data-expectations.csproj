@@ -77,12 +77,15 @@
     <Compile Include="AssertionResult.cs" />
     <Compile Include="Core\IAmAnExpectation.cs" />
     <Compile Include="Generation\EpochPeristence.cs" />
+    <Compile Include="Generation\ExpectationFactory.cs" />
+    <Compile Include="Generation\ExpectationFrequency.cs" />
     <Compile Include="Generation\ExpectationGenerator.cs" />
     <Compile Include="Generation\IEpochPeristence.cs" />
     <Compile Include="Generation\IExpectationGenerator.cs" />
     <Compile Include="IAssert.cs" />
     <Compile Include="MissHaversham.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Temporal\DailyExpectation.cs" />
     <Compile Include="Temporal\HourlyExpectation.cs" />
     <Compile Include="Tenancy\ExpectationDescription.cs" />
     <Compile Include="Tenancy\ITenantConfig.cs" />
