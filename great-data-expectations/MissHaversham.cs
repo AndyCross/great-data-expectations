@@ -47,8 +47,11 @@ namespace GreatExpectations
 
             // If incremental expectations are required, set a satisfied bit on the storage container, allowing the next iterations to 
             // start from where this timepoint ended
-            _epochPeristence.SetLastSatisfied(storageAccount, containerName,
-                assertions.OrderByDescending(a => a.Raw.Epoch).First(a => a.Result == AssertionResult.Success));
+            if (assertions.Any(t => t.Result == AssertionResult.Success))
+            {
+                _epochPeristence.SetLastSatisfied(storageAccount, containerName,
+                    assertions.OrderByDescending(a => a.Raw.Epoch).First(a => a.Result == AssertionResult.Success));
+            }
             return assertions;
         }
 
