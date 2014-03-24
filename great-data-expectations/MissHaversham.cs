@@ -26,12 +26,12 @@ namespace GreatExpectations
             _assert = assert;
         }
 
-        internal Assertion[] AssertImpl(ExpectationFrequency frequency, CloudStorageAccount storageAccount, string containerName, string dataSetPrefix, int minFileExpectation = 1, int maxFileExpectation = 1, string customVariableFormat = "", DateTime? forceStartDateTime = null, DateTime? forceEndDateTime = null)
+        internal Assertion[] AssertImpl(ExpectationFrequency frequency, CloudStorageAccount storageAccount, string containerName, string dataSetPrefix, string jobName, int minFileExpectation = 1, int maxFileExpectation = 1, string customVariableFormat = "", DateTime? forceStartDateTime = null, DateTime? forceEndDateTime = null)
         {
             // The use of EpochPersistence allows repeated and incremental expectation checking. Be sure to call EpochPersistence.SetLastSatisfied
             // note that this is optional in the workflow and instead arbitrary datetimes can be passed to expectationGenerator.GenerateExpectations
             DateTime lastExecutionEpoch, endDateTime;
-            lastExecutionEpoch = forceStartDateTime.HasValue ? forceStartDateTime.Value : _epochPeristence.GetLastSatisfied(storageAccount, containerName);
+            lastExecutionEpoch = forceStartDateTime.HasValue ? forceStartDateTime.Value : _epochPeristence.GetLastSatisfied(storageAccount, containerName, jobName);
             var nextExecutionEpoch = lastExecutionEpoch.AddHours(1D);
             endDateTime = forceEndDateTime.HasValue ? forceEndDateTime.Value : DateTime.Now;
 
@@ -50,7 +50,7 @@ namespace GreatExpectations
             if (assertions.Any(t => t.Result == AssertionResult.Success))
             {
                 _epochPeristence.SetLastSatisfied(storageAccount, containerName,
-                    assertions.OrderByDescending(a => a.Raw.Epoch).First(a => a.Result == AssertionResult.Success));
+                    assertions.OrderByDescending(a => a.Raw.Epoch).First(a => a.Result == AssertionResult.Success), jobName);
             }
             return assertions;
         }
@@ -68,12 +68,12 @@ namespace GreatExpectations
         /// <param name="forceStartDateTime">A datetime to start asserting</param>
         /// <param name="forceEndDateTime">A datetime to cease asserting</param>
         /// <returns></returns>
-        public static Assertion[] Assert(ExpectationFrequency frequency, CloudStorageAccount storageAccount, string containerName, string dataSetPrefix,
+        public static Assertion[] Assert(ExpectationFrequency frequency, CloudStorageAccount storageAccount, string containerName, string dataSetPrefix, string jobName,
             int minFileExpectation = 1, int maxFileExpectation = 1, string customVariableFormat = "",
             DateTime? forceStartDateTime = null, DateTime? forceEndDateTime = null)
         {
             var spinster = new MissHaversham();
-            return spinster.AssertImpl(frequency, storageAccount, containerName, dataSetPrefix, minFileExpectation, maxFileExpectation,
+            return spinster.AssertImpl(frequency, storageAccount, containerName, dataSetPrefix, jobName, minFileExpectation, maxFileExpectation,
                 customVariableFormat, forceStartDateTime, forceEndDateTime);
         }
     }
